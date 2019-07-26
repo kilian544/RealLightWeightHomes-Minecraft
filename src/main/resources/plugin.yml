@@ -1,5 +1,5 @@
 name: RealLightWeightHomes
-version: 0.1
+version: 0.3
 author: Kilian Legters
 main: me.kilianlegters.RealLightWeightHomes
 description: Literally just /(set/del)home.
@@ -8,10 +8,15 @@ api-version: 1.14
 commands:
   sethome:
     description: Sethome command.
-    usage: /<command>
+    usage: /<command> <name>
   home:
     description: Home command.
-    usage: /<command>
+    usage: /<command> <name>
   delhome:
     description: Delhome command.
-    usage: /<command>
+    usage: /<command> <name>
+
+permissions:
+    reallightweighthomes:
+        description: RealLightWeightHomes permission.
+        default: true

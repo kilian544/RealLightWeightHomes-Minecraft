@@ -14,13 +14,15 @@ public class CustomRunnable extends BukkitRunnable {
 
     private Homes homes;
     private Player player;
+    private String home;
     private Location homeLocation;
     private List<Location> queue;
     private int iterations;
 
-    public CustomRunnable(Homes homes, Player player, Location homeLocation, List<Location> queue, int iterations){
+    public CustomRunnable(Homes homes, Player player, String home, Location homeLocation, List<Location> queue, int iterations){
         this.homes = homes;
         this.player = player;
+        this.home = home;
         this.homeLocation = homeLocation;
         this.queue = queue;
         this.iterations = iterations;
@@ -31,7 +33,7 @@ public class CustomRunnable extends BukkitRunnable {
         Location holder = this.homes.getSafeHomeLocation(homeLocation, queue, iterations);
         if (holder != null){
             this.homes.teleport(player, holder.setDirection(homeLocation.getDirection()));
-            this.homes.setHome(player, holder, true);
+            this.homes.setHome(player, home, holder, true);
             cancel();
         }
     }
