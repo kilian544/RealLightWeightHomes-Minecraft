@@ -62,8 +62,9 @@ public class DataManager {
     }
 
     private FileConfiguration loadData() {
-        this.dataFile = getFile("data.yml");
-        dataFileConfiguration = getFileConfiguration(dataFile);
+        File holder = getFile("data.yml");
+        this.dataFileConfiguration = getFileConfiguration(holder);
+        this.dataFile = holder;
         Bukkit.getLogger().info("[" + RealLightWeightHomes.realLightWeightHomes.getDescription().getFullName() + "] " + "Data.yml loaded.");
         return dataFileConfiguration;
     }
@@ -81,8 +82,10 @@ public class DataManager {
         File file = new File(RealLightWeightHomes.realLightWeightHomes.getDataFolder(), fileName);
 
         try {
-            if (file.createNewFile()) {
-                Bukkit.getLogger().info("[" + RealLightWeightHomes.realLightWeightHomes.getDescription().getFullName() + "] " + "Creating: " + file.getName());
+            if (!file.exists()) {
+                RealLightWeightHomes.realLightWeightHomes.getDataFolder().mkdirs();
+                file.createNewFile();
+                Bukkit.getLogger().info("[" + RealLightWeightHomes.realLightWeightHomes.getDescription().getFullName() + "] " + "Creating: " + file.getAbsolutePath());
             }
         } catch (IOException e){
             e.printStackTrace();
